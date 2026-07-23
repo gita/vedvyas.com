@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Prakash (light) — matches bhagavadgita.com */
+    --background: 48 33.33% 97.06%;
+    --foreground: 48 19.61% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 60 2.56% 7.65%;
+    --primary: 15.11 55.56% 52.35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 46.15 22.81% 88.82%;
+    --secondary-foreground: 50.77 8.5% 30%;
+    --muted: 44 29.41% 90%;
+    --muted-foreground: 50 6% 42%;
+    --accent: 46.15 22.81% 88.82%;
+    --accent-foreground: 50.77 19.4% 13.14%;
+    --border: 50 7.5% 84.31%;
+    --ring: 15.11 55.56% 52.35%;
+    --radius: 0.5rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Nisha (dark) — matches bhagavadgita.com */
+      --background: 60 2.7% 14.51%;
+      --foreground: 46 24% 92%;
+      --card: 60 2.7% 17.5%;
+      --card-foreground: 46 24% 92%;
+      --primary: 14.77 63.11% 59.61%;
+      --primary-foreground: 60 2.7% 10%;
+      --secondary: 60 2.5% 22%;
+      --secondary-foreground: 46 20% 88%;
+      --muted: 60 2.5% 22%;
+      --muted-foreground: 48 6% 65%;
+      --accent: 60 2.5% 24%;
+      --accent-foreground: 46 24% 92%;
+      --border: 60 2.5% 26%;
+      --ring: 14.77 63.11% 59.61%;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Anchors clear the sticky header */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Respect users who ask for less motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Warm paper wash behind the hero */
+  .hero-wash {
+    background:
+      radial-gradient(
+        ellipse 90% 60% at 50% -10%,
+        hsl(var(--primary) / 0.13),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 85% 10%,
+        hsl(38 70% 60% / 0.1),
+        transparent 65%
+      );
+  }
+}
