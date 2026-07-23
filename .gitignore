@@ -37,3 +37,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# typescript incremental build cache
+*.tsbuildinfo
