@@ -1,4 +1,4 @@
-# vedvyas.org
+# vedvyas.com
 
 Site for the Ved Vyas Foundation.
 
@@ -39,8 +39,10 @@ are generated from the same content module, so they never drift.
 - **Email is never in the HTML.** `components/obfuscated-email.tsx` assembles the
   address in the browser. Do not add a plain `mailto:` or put the address in
   JSON-LD, or scrapers get it for free.
-- **Canonical origin** is `vedvyas.org` (it holds the domain rating and the
-  backlinks). Override with `NEXT_PUBLIC_SITE_URL` if that ever changes.
+- **Canonical origin** is `vedvyas.com`. `vedvyas.org` 301-redirects to it, so
+  the older domain's link equity flows here. Keep that redirect permanent, and
+  keep every outbound reference (GitHub org, LinkedIn, app listings) pointing at
+  `.com`. Override with `NEXT_PUBLIC_SITE_URL` if that ever changes.
 
 ## History
 

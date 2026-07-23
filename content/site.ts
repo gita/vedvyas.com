@@ -7,11 +7,10 @@ export const site = {
   name: "Ved Vyas Foundation",
   shortName: "Ved Vyas",
   /**
-   * Canonical origin. vedvyas.org holds the domain rating and every backlink,
-   * so it is the default. Override with NEXT_PUBLIC_SITE_URL if the canonical
-   * ever moves to vedvyas.com.
+   * Canonical origin. vedvyas.org 301-redirects here, so .com is the single
+   * canonical host and the .org link equity flows into it.
    */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://vedvyas.org",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://vedvyas.com",
   /**
    * Split so the address never appears as one scrapable string in the HTML.
    * Reassembled at runtime by components/obfuscated-email.tsx.
