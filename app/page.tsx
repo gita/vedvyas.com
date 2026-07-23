@@ -1,9 +1,15 @@
+import Image from "next/image";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
-import { ButtonLink } from "@/components/ui/button";
+import { ObfuscatedEmail } from "@/components/obfuscated-email";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { ButtonLink, buttonVariants } from "@/components/ui/button";
 import {
+  contribute,
   cta,
   hero,
+  meta,
   mission,
   projects,
   projectsHeading,
@@ -12,53 +18,22 @@ import {
   vedVyas,
 } from "@/content/site";
 
-function Header() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <a
-          href="#top"
-          className="flex h-11 items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          <span
-            aria-hidden
-            className="grid size-9 shrink-0 place-items-center rounded-full bg-primary/10 font-dev text-xl leading-none text-primary"
-          >
-            ॐ
-          </span>
-          <span className="font-serif text-lg font-semibold tracking-tight">
-            Ved Vyas
-            <span className="hidden sm:inline"> Foundation</span>
-          </span>
-        </a>
-
-        <nav className="flex items-center gap-1 sm:gap-2">
-          <a
-            href="#mission"
-            className="hidden rounded-md px-3 py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:block"
-          >
-            Mission
-          </a>
-          <a
-            href="#projects"
-            className="hidden rounded-md px-3 py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:block"
-          >
-            Projects
-          </a>
-          <ButtonLink href="#contact" className="h-11 lg:h-9 lg:px-4">
-            Get in touch
-          </ButtonLink>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
 function Hero() {
   return (
     <section id="top" className="hero-wash relative overflow-hidden">
-      <div className="container relative py-20 sm:py-28 lg:py-36">
+      <div className="container relative py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
+          <Image
+            src="/art/hero.png"
+            alt=""
+            aria-hidden
+            width={1200}
+            height={745}
+            priority
+            sizes="(max-width: 640px) 260px, 440px"
+            className="mx-auto mb-8 w-[240px] animate-fade-up sm:mb-10 sm:w-[340px] lg:w-[420px]"
+          />
+
           <p className="animate-fade-up text-xs font-medium uppercase tracking-[0.18em] text-primary sm:text-sm">
             {hero.eyebrow}
           </p>
@@ -81,7 +56,7 @@ function Hero() {
           </div>
 
           <p className="mt-7 animate-fade-up text-sm text-muted-foreground [animation-delay:240ms]">
-            Free, non-profit, and open source.
+            {hero.note}
           </p>
         </div>
       </div>
@@ -93,23 +68,35 @@ function Mission() {
   return (
     <section id="mission" className="border-t border-border/60 py-20 sm:py-28">
       <div className="container">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
-              {mission.heading}
-            </h2>
-          </div>
-          <div className="space-y-6 lg:col-span-8 lg:pt-1">
-            {mission.body.map((paragraph) => (
-              <p
-                key={paragraph.slice(0, 32)}
-                className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
+        <div className="max-w-2xl">
+          <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+            {mission.heading}
+          </h2>
+          <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {mission.intro}
+          </p>
         </div>
+
+        <dl className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2">
+          {mission.pillars.map((pillar, index) => (
+            <div key={pillar.title} className="border-t border-border pt-5">
+              <dt className="flex items-baseline gap-3">
+                <span
+                  aria-hidden
+                  className="text-xs font-semibold tabular-nums text-primary"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-serif text-xl font-semibold tracking-tight">
+                  {pillar.title}
+                </span>
+              </dt>
+              <dd className="mt-2.5 text-pretty leading-relaxed text-muted-foreground">
+                {pillar.body}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
@@ -136,48 +123,58 @@ function Projects() {
             <li
               key={project.name}
               className={
-                project.featured
-                  ? "group relative flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-card p-6 shadow-sm ring-1 ring-primary/10 transition-shadow hover:shadow-md sm:p-7"
-                  : "group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md sm:p-7"
+                "group relative flex flex-col rounded-2xl border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus-within:ring-2 focus-within:ring-ring sm:p-7 " +
+                (project.featured
+                  ? "border-primary/30 ring-1 ring-primary/10"
+                  : "border-border")
               }
             >
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -right-2 -top-3 select-none font-dev text-6xl leading-none text-primary/[0.09] transition-colors group-hover:text-primary/[0.14] sm:text-7xl"
-              >
-                {project.glyph}
-              </span>
-
-              <div className="relative">
-                <h3 className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">
-                  {project.name}
-                </h3>
-                <p className="mt-1.5 text-sm font-medium text-primary">
-                  {project.tagline}
-                </p>
-                <p className="mt-4 max-w-prose text-pretty text-[15px] leading-relaxed text-muted-foreground">
-                  {project.description}
-                </p>
+              <div className="relative size-24 shrink-0 sm:size-28">
+                <Image
+                  src={project.image}
+                  alt={project.imageAlt}
+                  fill
+                  sizes="112px"
+                  className="object-contain object-left"
+                />
               </div>
 
-              <div className="relative mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-6">
+              <h3 className="mt-5 font-serif text-xl font-semibold tracking-tight sm:text-2xl">
+                {/*
+                  Stretched link. The ::after covers the whole card so the card is
+                  clickable, while the markup stays one valid anchor per card.
+                */}
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="-my-3 inline-flex items-center gap-1 rounded-md py-3 text-sm font-semibold text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus:outline-none"
                 >
+                  {project.name}
+                </a>
+              </h3>
+
+              <p className="mt-1.5 text-sm font-medium text-primary">
+                {project.tagline}
+              </p>
+              <p className="mt-4 max-w-prose text-pretty text-[15px] leading-relaxed text-muted-foreground">
+                {project.description}
+              </p>
+
+              <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-6">
+                <span className="-my-3 inline-flex items-center gap-1 py-3 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
                   {project.cta}
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+                </span>
 
+                {/* z-10 lifts these above the stretched link so they stay clickable */}
                 {project.links?.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="-my-3 inline-flex items-center rounded-md py-3 text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="relative z-10 -my-3 inline-flex items-center rounded-md py-3 text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
                   </a>
@@ -208,24 +205,70 @@ function VedVyas() {
           <blockquote className="mt-6 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             {vedVyas.body}
           </blockquote>
+          <div className="mt-8 flex justify-center">
+            <ButtonLink href="/ved-vyas" variant="outline" size="lg">
+              Read about Ved Vyas
+            </ButtonLink>
+          </div>
         </figure>
       </div>
     </section>
   );
 }
 
-function Contact() {
-  const links = [
-    { label: "Email us", href: `mailto:${site.email}`, Icon: Mail },
-    { label: "GitHub", href: site.social.github, Icon: Github },
-    { label: "LinkedIn", href: site.social.linkedin, Icon: Linkedin },
-  ];
-
+function Contribute() {
   return (
     <section
-      id="contact"
+      id="contribute"
       className="border-t border-border/60 bg-accent/30 py-20 sm:py-28"
     >
+      <div className="container">
+        <div className="max-w-2xl">
+          <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+            {contribute.heading}
+          </h2>
+          <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {contribute.intro}
+          </p>
+        </div>
+
+        <dl className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {contribute.roles.map((role) => (
+            <div
+              key={role.title}
+              className="rounded-xl border border-border bg-card p-5"
+            >
+              <dt className="font-serif text-lg font-semibold tracking-tight">
+                {role.title}
+              </dt>
+              <dd className="mt-2 text-pretty text-[15px] leading-relaxed text-muted-foreground">
+                {role.body}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-10 flex justify-center">
+          <ObfuscatedEmail
+            user={site.emailUser}
+            domain={site.emailDomain}
+            subject="I would like to contribute"
+            className={buttonVariants({ size: "lg" })}
+          >
+            <>
+              <Mail aria-hidden />
+              {contribute.cta}
+            </>
+          </ObfuscatedEmail>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="contact" className="border-t border-border/60 py-20 sm:py-28">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -236,17 +279,24 @@ function Contact() {
           </p>
 
           <div className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-            {links.map(({ label, href, Icon }, index) => (
-              <ButtonLink
-                key={label}
-                href={href}
-                size="lg"
-                variant={index === 0 ? "default" : "outline"}
-              >
-                <Icon aria-hidden />
-                {label}
-              </ButtonLink>
-            ))}
+            <ObfuscatedEmail
+              user={site.emailUser}
+              domain={site.emailDomain}
+              className={buttonVariants({ size: "lg" })}
+            >
+              <>
+                <Mail aria-hidden />
+                Email us
+              </>
+            </ObfuscatedEmail>
+            <ButtonLink href={site.social.github} size="lg" variant="outline">
+              <Github aria-hidden />
+              GitHub
+            </ButtonLink>
+            <ButtonLink href={site.social.linkedin} size="lg" variant="outline">
+              <Linkedin aria-hidden />
+              LinkedIn
+            </ButtonLink>
           </div>
         </div>
       </div>
@@ -254,39 +304,42 @@ function Contact() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-border/60 py-10">
-      <div className="container flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
-        <p>
-          &copy; {new Date().getFullYear()} {site.name}
-        </p>
-        <p className="text-center sm:text-right">
-          Made as an offering. Free for everyone.
-        </p>
-      </div>
-    </footer>
-  );
-}
+/** The page-level node. Organization, WebSite and the product nodes live in the layout. */
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${site.url}/#webpage`,
+  url: site.url,
+  name: meta.title,
+  description: meta.description,
+  isPartOf: { "@id": `${site.url}/#website` },
+  about: { "@id": `${site.url}/#organization` },
+  inLanguage: "en",
+};
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <a
         href="#mission"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
       >
         Skip to content
       </a>
-      <Header />
+      <SiteHeader />
       <main>
         <Hero />
         <Mission />
         <Projects />
         <VedVyas />
+        <Contribute />
         <Contact />
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

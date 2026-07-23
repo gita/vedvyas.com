@@ -1,13 +1,23 @@
 /**
  * Single source of truth for site copy and links.
- * Prose was drafted with Codex and reviewed by hand. Keep it em-dash free.
+ * Prose drafted with Codex, reviewed by hand. Keep it free of em dashes.
  */
 
 export const site = {
   name: "Ved Vyas Foundation",
   shortName: "Ved Vyas",
-  url: "https://vedvyas.org",
-  email: "contact@bhagavadgita.io",
+  /**
+   * Canonical origin. vedvyas.org holds the domain rating and every backlink,
+   * so it is the default. Override with NEXT_PUBLIC_SITE_URL if the canonical
+   * ever moves to vedvyas.com.
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://vedvyas.org",
+  /**
+   * Split so the address never appears as one scrapable string in the HTML.
+   * Reassembled at runtime by components/obfuscated-email.tsx.
+   */
+  emailUser: "contact",
+  emailDomain: "bhagavadgita.io",
   social: {
     github: "https://github.com/gita",
     linkedin: "https://www.linkedin.com/company/vedvyas/",
@@ -16,20 +26,36 @@ export const site = {
 } as const;
 
 export const hero = {
-  eyebrow: "Scripture, made accessible",
+  eyebrow: "Scriptures, made accessible",
   headline: "Ancient wisdom, made for life today",
   subhead:
-    "We build modern web and mobile apps for Sanatan Dharma scriptures, with clear translations, trusted commentaries, and audio. Every product is free for everyone to use.",
+    "We build modern web and mobile apps for Sanatan Dharma scriptures, from trusted reading tools to scripture grounded AI. Every product is free and ad-free, with no paywall or subscription.",
   primaryCta: "Explore projects",
   secondaryCta: "Our mission",
+  note: "Free and ad-free. No ads. No paywall.",
 };
 
 export const mission = {
-  heading: "Scripture deserves better",
-  body: [
-    "Too many scripture websites and apps feel dated, crowded, or hard to read. Text is often difficult to search, translations lack context, and basic features fall short. Younger readers expect the same care they find in the products they use every day.",
-    "We build scripture experiences that are clear, fast, and easy to use on any screen. Readers can study Sanskrit, explore word-for-word meanings, compare translations and commentaries, hear recitations, save verses, and read in many Indian languages.",
-    "Everything we make is free, ad-light, and built by a non-profit foundation. We take our name from Ved Vyas, who compiled the Vedas and authored the Mahabharata. His work preserved sacred knowledge for generations. We aim to carry that service into the present.",
+  heading: "Scriptures deserve better",
+  intro:
+    "Most scripture websites and apps feel dated, built for another era. They fail to reach younger readers who expect the care, speed, and clarity of the products they use every day.",
+  pillars: [
+    {
+      title: "Built for Gen Z",
+      body: "Gen Z grew up with thoughtful, well designed apps. We build scripture products that feel natural to read, explore, and return to.",
+    },
+    {
+      title: "Crafted for today",
+      body: "State of the art craft makes every screen fast and clear, with Sanskrit, word for word meanings, translations, commentaries, and audio for study.",
+    },
+    {
+      title: "AI grounded in scripture",
+      body: "We shipped some of the first AI applications built on a Hindu scripture, and we keep pushing what grounded tools can do.",
+    },
+    {
+      title: "Free for everyone",
+      body: "Everything stays free and ad-free forever, with no ads, no paywall, and no subscription. Donations are welcome, but we never ask.",
+    },
   ],
 };
 
@@ -39,16 +65,18 @@ export type Project = {
   description: string;
   cta: string;
   href: string;
-  /** Extra links rendered as small secondary actions, e.g. app stores. */
+  /** Rendered as small secondary actions that sit above the card-wide link. */
   links?: { label: string; href: string }[];
-  /** Devanagari mark shown in the card corner. */
-  glyph: string;
+  /** Path under /public. */
+  image: string;
+  /** Alt text describing the artwork, not the product. */
+  imageAlt: string;
   featured?: boolean;
 };
 
 export const projectsHeading = "What we build";
 export const projectsIntro =
-  "Four free products for reading, listening, studying, and applying the teachings of Sanatan Dharma in daily life.";
+  "Five free products for reading, listening, studying, and applying the teachings of Sanatan Dharma in daily life.";
 
 export const projects: Project[] = [
   {
@@ -58,7 +86,9 @@ export const projects: Project[] = [
       "Read all 700 verses in Sanskrit, with word-for-word meanings, multiple translations and commentaries, and audio recitation. The site supports many Indian languages and serves readers around the world each day.",
     cta: "Read the Gita",
     href: "https://bhagavadgita.com",
-    glyph: "गीता",
+    image: "/art/bhagavad-gita.png",
+    imageAlt:
+      "A chariot wheel and a bamboo flute, drawn as a manuscript emblem",
     featured: true,
   },
   {
@@ -78,16 +108,19 @@ export const projects: Project[] = [
         href: "https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita",
       },
     ],
-    glyph: "ॐ",
+    image: "/art/gita-app.png",
+    imageAlt:
+      "Palm-leaf manuscript pages fanning up into the outline of a phone",
   },
   {
     name: "GitaGPT",
     tagline: "Life questions, answered through the Gita",
     description:
-      "Ask a life question and receive an answer grounded in the teachings of the Bhagavad Gita. GitaGPT is available in 16 languages, including Hindi, Telugu, Gujarati, and Bengali.",
+      "Ask a life question and receive an answer grounded in the teachings of the Bhagavad Gita. One of the first AI applications built on a Hindu scripture, now available in 16 languages including Hindi, Telugu, Gujarati, and Bengali.",
     cta: "Ask GitaGPT",
     href: "https://bhagavadgita.com/gitagpt",
-    glyph: "कृष्ण",
+    image: "/art/gitagpt.png",
+    imageAlt: "An upright bamboo flute with arcs of sound radiating outward",
   },
   {
     name: "Hanuman Chalisa",
@@ -96,7 +129,18 @@ export const projects: Project[] = [
       "Read and listen to the full Hanuman Chalisa, with a clear translation and meaning for every verse. The site helps readers understand the prayer while keeping its original text close at hand.",
     cta: "Open the Chalisa",
     href: "https://hanumanchalisa.net",
-    glyph: "श्री",
+    image: "/art/hanuman-chalisa.png",
+    imageAlt: "A ceremonial mace before a stylised mountain and rising sun",
+  },
+  {
+    name: "Radha Krishna",
+    tagline: "Songs and darshan for every day",
+    description:
+      "Devotional songs, bhajans, and darshan images gathered into one simple space for daily practice. Listen during prayer, reflect through music, or keep a beloved image close through the day.",
+    cta: "Visit Radha Krishna",
+    href: "https://radhakrishna.com",
+    image: "/art/radha-krishna.png",
+    imageAlt: "Two peacock feathers crossed behind a lotus flower",
   },
 ];
 
@@ -105,14 +149,46 @@ export const vedVyas = {
   body: "Ved Vyas is the sage traditionally credited with compiling the Vedas and authoring the Mahabharata, which contains the Bhagavad Gita. He gathered vast teachings and arranged them so others could study, remember, and pass them on. We carry his name with humility. It reminds us that sacred knowledge should be preserved with care, presented clearly, and made available to every sincere reader.",
 };
 
+export const contribute = {
+  heading: "Bring your skills",
+  intro:
+    "We are volunteer run, and skills of every kind can help us build better scripture products. If you can give your time and care, reach out and tell us how you would like to contribute.",
+  roles: [
+    {
+      title: "Engineering",
+      body: "Build fast, accessible web and mobile products for scripture readers.",
+    },
+    {
+      title: "Design",
+      body: "Shape clear interfaces that make reading and study feel natural.",
+    },
+    {
+      title: "SEO and growth",
+      body: "Help more people find our free scripture products through search.",
+    },
+    {
+      title: "Writing and translation",
+      body: "Write, edit, and translate scripture content with care and clarity.",
+    },
+    {
+      title: "Audio and video",
+      body: "Record and edit recitations, bhajans, explainers, and devotional videos.",
+    },
+    {
+      title: "Scholarship and review",
+      body: "Review verses, translations, commentaries, and sources for accuracy and context.",
+    },
+  ],
+  cta: "Contribute your skills",
+};
+
 export const cta = {
   heading: "Read, build, or say hello",
   body: "Use our apps, share them with family and friends, contribute to our open-source work on GitHub, or write to us. There is a place for every reader and builder.",
-  button: "Get in touch",
 };
 
 export const meta = {
   title: "Ved Vyas Foundation | Free Sanatan Dharma Apps",
   description:
-    "Ved Vyas Foundation builds free, modern web and mobile apps for the Bhagavad Gita, GitaGPT, Hanuman Chalisa, and Sanatan Dharma scriptures worldwide.",
+    "Ved Vyas Foundation builds free, ad-free web and mobile apps for the Bhagavad Gita, GitaGPT, Hanuman Chalisa, and Sanatan Dharma scriptures worldwide.",
 };
