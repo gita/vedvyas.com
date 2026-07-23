@@ -1,15 +1,15 @@
 import { OG_SIZE, renderOgCard } from '@/lib/og'
 
-export const alt = 'Ved Vyas Foundation'
+export const alt = 'About the Ved Vyas Foundation'
 export const size = OG_SIZE
 export const contentType = 'image/png'
 
 export default async function OpengraphImage() {
   return renderOgCard({
-    eyebrow: 'Ved Vyas Foundation',
-    title: 'Ancient wisdom, made for life today',
+    eyebrow: 'About us',
+    title: 'A volunteer-run non-profit',
     description:
-      'Free, ad-free apps for the Bhagavad Gita and the scriptures of Sanatan Dharma.',
+      'We build free, ad-free scripture apps for a younger generation. No ads, no paywall, no subscription.',
     image: 'og/ved-vyas.jpg',
   })
 }

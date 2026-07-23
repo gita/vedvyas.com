@@ -32,16 +32,6 @@ export const metadata: Metadata = {
   },
   description: meta.description,
   applicationName: site.name,
-  keywords: [
-    "Ved Vyas",
-    "Ved Vyas Foundation",
-    "Bhagavad Gita",
-    "GitaGPT",
-    "Hanuman Chalisa",
-    "Sanatan Dharma",
-    "Hindu scriptures",
-    "Mahabharata",
-  ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
@@ -186,14 +176,17 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${crimson.variable} ${devanagari.variable}`}
     >
-      <head>
+      <body className="font-sans">
+        {/*
+          JSON-LD lives in the body on purpose. Next owns <head>, and rendering
+          a literal <head> here pushes the streamed title and canonical out of
+          it in dev. Google reads ld+json anywhere in the document.
+        */}
         <script
           type="application/ld+json"
           // Build-time constant. No user input reaches this.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd()) }}
         />
-      </head>
-      <body className="font-sans">
         {children}
         {/* Privacy-friendly analytics by Plausible */}
         <Script

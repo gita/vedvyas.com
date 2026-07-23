@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+
 import { BrowserFrame } from "@/components/browser-frame";
 
 import { SiteFooter } from "@/components/site-footer";
@@ -103,6 +105,22 @@ export default function VedVyasPage() {
               <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
                 {page.lede}
               </p>
+
+              <figure className="mt-10">
+                <Image
+                  src="/art/ved-vyas.webp"
+                  alt="Maharishi Ved Vyas seated beneath a banyan tree at a river hermitage, one hand resting on a palm-leaf manuscript"
+                  width={1400}
+                  height={933}
+                  priority
+                  sizes="(max-width: 768px) 92vw, 768px"
+                  className="w-full rounded-xl border border-border shadow-lg shadow-foreground/10"
+                />
+                <figcaption className="mt-3 text-sm text-muted-foreground">
+                  Maharishi Ved Vyas at his hermitage, arranging the sacred
+                  texts. A devotional rendering, not a historical portrait.
+                </figcaption>
+              </figure>
             </div>
           </div>
         </section>
