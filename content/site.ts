@@ -137,7 +137,7 @@ export const projects: Project[] = [
     cta: "Visit Radha Krishna",
     href: "https://radhakrishna.com",
     image: "/shots/radha-krishna.webp",
-    imageAlt: "Two peacock feathers crossed behind a lotus flower",
+    imageAlt: "A devotional painting of Shri Radha and Shri Krishna beside the Yamuna, Krishna playing the flute",
   },
 ];
 
