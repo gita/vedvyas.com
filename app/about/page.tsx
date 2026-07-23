@@ -60,7 +60,7 @@ export default function AboutPage() {
       <main>
         <section className="hero-wash border-b border-border/60">
           <div className="container py-14 sm:py-20">
-            <nav aria-label="Breadcrumb" className="mb-8">
+            <nav aria-label="Breadcrumb" className="mx-auto mb-8 max-w-3xl">
               <ol className="flex items-center gap-2 text-sm text-muted-foreground">
                 <li>
                   <a href="/" className="-my-3 inline-block py-3 underline-offset-4 hover:underline">
@@ -72,7 +72,7 @@ export default function AboutPage() {
               </ol>
             </nav>
 
-            <div className="max-w-3xl">
+            <div className="mx-auto max-w-3xl">
               <h1 className="text-balance font-serif text-4xl font-semibold leading-[1.12] tracking-tight sm:text-5xl">
                 {page.h1}
               </h1>
@@ -109,25 +109,28 @@ export default function AboutPage() {
 
         <section className="border-t border-border/60 bg-accent/30 py-16 sm:py-20">
           <div className="container">
-            <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
-              What we build
-            </h2>
+            <div className="mx-auto max-w-3xl">
+              <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
+                What we build
+              </h2>
+            </div>
             <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
                 <li
                   key={project.name}
-                  className="group relative flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus-within:ring-2 focus-within:ring-ring"
+                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus-within:ring-2 focus-within:ring-ring"
                 >
-                  <div className="relative size-16 shrink-0">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-muted">
                     <Image
                       src={project.image}
                       alt={project.imageAlt}
                       fill
-                      sizes="64px"
-                      className="object-contain object-left"
+                      sizes="(max-width: 640px) 92vw, 380px"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>
-                  <h3 className="mt-4 font-serif text-lg font-semibold tracking-tight">
+                  <div className="p-5">
+                  <h3 className="font-serif text-lg font-semibold tracking-tight">
                     <a
                       href={project.href}
                       target="_blank"
@@ -140,6 +143,7 @@ export default function AboutPage() {
                   <p className="mt-1.5 text-sm text-primary">
                     {project.tagline}
                   </p>
+                  </div>
                 </li>
               ))}
             </ul>

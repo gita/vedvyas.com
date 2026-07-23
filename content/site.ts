@@ -85,9 +85,8 @@ export const projects: Project[] = [
       "Read all 700 verses in Sanskrit, with word-for-word meanings, multiple translations and commentaries, and audio recitation. The site supports many Indian languages and serves readers around the world each day.",
     cta: "Read the Gita",
     href: "https://bhagavadgita.com",
-    image: "/art/bhagavad-gita.png",
-    imageAlt:
-      "A chariot wheel and a bamboo flute, drawn as a manuscript emblem",
+    image: "/shots/bhagavad-gita.webp",
+    imageAlt: "The BhagavadGita.com home page, showing Krishna and Arjuna on the battlefield of Kurukshetra",
     featured: true,
   },
   {
@@ -107,9 +106,8 @@ export const projects: Project[] = [
         href: "https://play.google.com/store/apps/details?id=com.gitainitiative.bhagavadgita",
       },
     ],
-    image: "/art/gita-app.png",
-    imageAlt:
-      "Palm-leaf manuscript pages fanning up into the outline of a phone",
+    image: "/shots/gita-app.webp",
+    imageAlt: "The Bhagavad Gita app home screen with the daily verse",
   },
   {
     name: "GitaGPT",
@@ -118,8 +116,8 @@ export const projects: Project[] = [
       "Ask a life question and receive an answer grounded in the teachings of the Bhagavad Gita. One of the first AI applications built on a Hindu scripture, now available in 16 languages including Hindi, Telugu, Gujarati, and Bengali.",
     cta: "Ask GitaGPT",
     href: "https://bhagavadgita.com/gitagpt",
-    image: "/art/gitagpt.png",
-    imageAlt: "An upright bamboo flute with arcs of sound radiating outward",
+    image: "/shots/gitagpt.webp",
+    imageAlt: "The GitaGPT chat screen inviting a question about life, dharma or karma",
   },
   {
     name: "Hanuman Chalisa",
@@ -128,17 +126,17 @@ export const projects: Project[] = [
       "Read and listen to the full Hanuman Chalisa, with a clear translation and meaning for every verse. The site helps readers understand the prayer while keeping its original text close at hand.",
     cta: "Open the Chalisa",
     href: "https://hanumanchalisa.net",
-    image: "/art/hanuman-chalisa.png",
-    imageAlt: "A ceremonial mace before a stylised mountain and rising sun",
+    image: "/shots/hanuman-chalisa.webp",
+    imageAlt: "The Hanuman Chalisa home page",
   },
   {
     name: "Radha Krishna",
     tagline: "Songs and darshan for every day",
     description:
-      "Devotional songs, bhajans, and darshan images gathered into one simple space for daily practice. Listen during prayer, reflect through music, or keep a beloved image close through the day.",
+      "Bhajans, aarti, mantras and lyrics for Shri Radha Krishna, with stories, wallpapers and audio gathered into one simple space for daily practice.",
     cta: "Visit Radha Krishna",
     href: "https://radhakrishna.com",
-    image: "/art/radha-krishna.png",
+    image: "/shots/radha-krishna.webp",
     imageAlt: "Two peacock feathers crossed behind a lotus flower",
   },
 ];

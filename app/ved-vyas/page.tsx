@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { BrowserFrame } from "@/components/browser-frame";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -84,7 +84,7 @@ export default function VedVyasPage() {
       <main>
         <section className="hero-wash border-b border-border/60">
           <div className="container py-14 sm:py-20">
-            <nav aria-label="Breadcrumb" className="mb-8">
+            <nav aria-label="Breadcrumb" className="mx-auto mb-8 max-w-3xl">
               <ol className="flex items-center gap-2 text-sm text-muted-foreground">
                 <li>
                   <a href="/" className="-my-3 inline-block py-3 underline-offset-4 hover:underline">
@@ -96,27 +96,13 @@ export default function VedVyasPage() {
               </ol>
             </nav>
 
-            <div className="grid items-center gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-7">
-                <h1 className="text-balance font-serif text-4xl font-semibold leading-[1.12] tracking-tight sm:text-5xl">
-                  {page.h1}
-                </h1>
-                <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
-                  {page.lede}
-                </p>
-              </div>
-              <div className="lg:col-span-5">
-                <Image
-                  src="/art/hero.png"
-                  alt=""
-                  aria-hidden
-                  width={1200}
-                  height={745}
-                  priority
-                  sizes="(max-width: 1024px) 280px, 420px"
-                  className="mx-auto w-[240px] sm:w-[320px] lg:w-full"
-                />
-              </div>
+            <div className="mx-auto max-w-3xl">
+              <h1 className="text-balance font-serif text-4xl font-semibold leading-[1.12] tracking-tight sm:text-5xl">
+                {page.h1}
+              </h1>
+              <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
+                {page.lede}
+              </p>
             </div>
           </div>
         </section>
@@ -124,14 +110,17 @@ export default function VedVyasPage() {
         {/* Quick facts: the compact, extractable block AI answers tend to lift */}
         <section className="border-b border-border/60 py-14">
           <div className="container">
-            <h2 className="sr-only">Quick facts about Ved Vyas</h2>
-            <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+            <h2 className="sr-only">Quick facts about Maharishi Ved Vyas</h2>
+            <dl className="mx-auto grid max-w-3xl gap-4 sm:max-w-none sm:grid-cols-2 lg:grid-cols-3">
               {page.quickFacts.map((fact) => (
-                <div key={fact.label} className="border-t border-border pt-4">
+                <div
+                  key={fact.label}
+                  className="rounded-xl border border-border bg-card p-5 shadow-sm"
+                >
                   <dt className="text-xs font-semibold uppercase tracking-wider text-primary">
                     {fact.label}
                   </dt>
-                  <dd className="mt-1.5 text-pretty font-medium">
+                  <dd className="mt-2 text-pretty font-medium leading-snug">
                     {fact.value}
                   </dd>
                 </div>
@@ -189,15 +178,6 @@ export default function VedVyasPage() {
         <section className="border-t border-border/60 py-16 sm:py-20">
           <div className="container">
             <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-              <div className="relative size-24">
-                <Image
-                  src={gita.image}
-                  alt={gita.imageAlt}
-                  fill
-                  sizes="96px"
-                  className="object-contain"
-                />
-              </div>
               <h2 className="text-balance font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
                 Read what Ved Vyas composed
               </h2>
@@ -214,6 +194,14 @@ export default function VedVyasPage() {
                   About our foundation
                 </ButtonLink>
               </div>
+
+              <BrowserFrame
+                src={gita.image}
+                alt={gita.imageAlt}
+                label="bhagavadgita.com"
+                className="mt-6 w-full"
+                sizes="(max-width: 768px) 92vw, 760px"
+              />
             </div>
           </div>
         </section>

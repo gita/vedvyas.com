@@ -15,12 +15,16 @@ export function SiteHeader() {
           href="/"
           className="flex h-11 shrink-0 items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          {/* flex centring plus leading-none keeps the glyph optically centred in the disc */}
+          {/*
+            The Devanagari line box puts ॐ high in its em square, so flex
+            centring alone leaves it visibly above the disc centre. Measured
+            offset of the glyph's ink box at 36px is ~5px, hence the nudge.
+          */}
           <span
             aria-hidden
             className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 font-dev text-[19px] leading-none text-primary"
           >
-            <span className="translate-y-[1px]">ॐ</span>
+            <span className="translate-y-[5px]">ॐ</span>
           </span>
           <span className="font-serif text-lg font-semibold tracking-tight">
             Ved Vyas

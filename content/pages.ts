@@ -4,14 +4,14 @@
  */
 
 export const vedVyasPage = {
-  "title": "Ved Vyas: Sage Who Composed the Mahabharata",
+  "title": "Maharishi Ved Vyas: Sage of the Mahabharata",
   "description": "Learn who Ved Vyas was, why he divided the Vedas, how he composed the Mahabharata, and why Guru Purnima honours him across Hindu tradition today.",
-  "h1": "Ved Vyas, Sage of the Mahabharata",
-  "lede": "Ved Vyas was the sage Krishna Dvaipayana, traditionally honoured as the arranger of the four Vedas and composer of the Mahabharata. He shaped Hindu sacred literature and appears within the epic itself as the grandfather of the Pandavas and Kauravas.",
+  "h1": "Maharishi Ved Vyas, Sage of the Mahabharata",
+  "lede": "Ved Vyas, also written Veda Vyasa or simply Vyasa, was the sage Krishna Dvaipayana. He is traditionally honoured as the arranger of the four Vedas and the composer of the Mahabharata, and he appears within the epic itself as the grandfather of the Pandavas and Kauravas.",
   "quickFacts": [
     {
       "label": "Also known as",
-      "value": "Krishna Dvaipayana and Veda Vyasa"
+      "value": "Veda Vyasa, Vyasa, Krishna Dvaipayana, Maharishi Ved Vyas"
     },
     {
       "label": "Parents",
@@ -43,7 +43,7 @@ export const vedVyasPage = {
       ]
     },
     {
-      "heading": "How He Divided the Vedas",
+      "heading": "Why He Is Called Veda Vyasa",
       "body": [
         "The tradition says that sacred knowledge was first held as one Veda. Vyasa arranged it into the Rig, Yajur, Sama and Atharva Vedas so that its teachings could be preserved, studied and passed down through distinct lines.",
         "This act gave him the name Veda Vyasa, the arranger of the Veda. It also explains why Hindu tradition remembers him not only as an author, but as an organizer and teacher of sacred learning."

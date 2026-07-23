@@ -1,4 +1,6 @@
 import Image from "next/image";
+
+import { BrowserFrame } from "@/components/browser-frame";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
 import { ObfuscatedEmail } from "@/components/obfuscated-email";
@@ -23,17 +25,6 @@ function Hero() {
     <section id="top" className="hero-wash relative overflow-hidden">
       <div className="container relative py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <Image
-            src="/art/hero.png"
-            alt=""
-            aria-hidden
-            width={1200}
-            height={745}
-            priority
-            sizes="(max-width: 640px) 260px, 440px"
-            className="mx-auto mb-8 w-[240px] animate-fade-up sm:mb-10 sm:w-[340px] lg:w-[420px]"
-          />
-
           <p className="animate-fade-up text-xs font-medium uppercase tracking-[0.18em] text-primary sm:text-sm">
             {hero.eyebrow}
           </p>
@@ -58,6 +49,17 @@ function Hero() {
           <p className="mt-7 animate-fade-up text-sm text-muted-foreground [animation-delay:240ms]">
             {hero.note}
           </p>
+        </div>
+
+        {/* The pitch is "scriptures deserve better", so show the work itself. */}
+        <div className="mx-auto mt-14 max-w-4xl animate-fade-up sm:mt-16 [animation-delay:300ms]">
+          <BrowserFrame
+            src="/shots/bhagavad-gita.webp"
+            alt="The BhagavadGita.com home page, showing Krishna and Arjuna on the battlefield of Kurukshetra"
+            label="bhagavadgita.com"
+            priority
+            sizes="(max-width: 768px) 92vw, 900px"
+          />
         </div>
       </div>
     </section>
@@ -123,23 +125,24 @@ function Projects() {
             <li
               key={project.name}
               className={
-                "group relative flex flex-col rounded-2xl border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus-within:ring-2 focus-within:ring-ring sm:p-7 " +
+                "group relative flex flex-col overflow-hidden rounded-2xl border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus-within:ring-2 focus-within:ring-ring " +
                 (project.featured
                   ? "border-primary/30 ring-1 ring-primary/10"
                   : "border-border")
               }
             >
-              <div className="relative size-24 shrink-0 sm:size-28">
+              <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-muted">
                 <Image
                   src={project.image}
                   alt={project.imageAlt}
                   fill
-                  sizes="112px"
-                  className="object-contain object-left"
+                  sizes="(max-width: 640px) 92vw, 560px"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>
 
-              <h3 className="mt-5 font-serif text-xl font-semibold tracking-tight sm:text-2xl">
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+              <h3 className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">
                 {/*
                   Stretched link. The ::after covers the whole card so the card is
                   clickable, while the markup stays one valid anchor per card.
@@ -179,6 +182,7 @@ function Projects() {
                     {link.label}
                   </a>
                 ))}
+              </div>
               </div>
             </li>
           ))}
