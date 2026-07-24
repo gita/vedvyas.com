@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    /* Light (Prakash) only. Browser UA chrome (form controls, scrollbars)
+       stays light regardless of the OS colour-scheme preference. */
+    color-scheme: light;
+
     /* Prakash (light) — matches bhagavadgita.com */
     --background: 48 33.33% 97.06%;
     --foreground: 48 19.61% 20%;
@@ -22,24 +26,31 @@
     --radius: 0.5rem;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      /* Nisha (dark) — matches bhagavadgita.com */
-      --background: 60 2.7% 14.51%;
-      --foreground: 46 24% 92%;
-      --card: 60 2.7% 17.5%;
-      --card-foreground: 46 24% 92%;
-      --primary: 14.77 63.11% 59.61%;
-      --primary-foreground: 60 2.7% 10%;
-      --secondary: 60 2.5% 22%;
-      --secondary-foreground: 46 20% 88%;
-      --muted: 60 2.5% 22%;
-      --muted-foreground: 48 6% 65%;
-      --accent: 60 2.5% 24%;
-      --accent-foreground: 46 24% 92%;
-      --border: 60 2.5% 26%;
-      --ring: 14.77 63.11% 59.61%;
-    }
+  /*
+    The site is pinned to the light (Prakash) theme; it no longer follows the
+    OS/browser dark preference. The former
+    `@media (prefers-color-scheme: dark)` override has been removed.
+
+    The dark (Nisha) tokens are kept here behind an explicit
+    `[data-theme="dark"]` opt-in so a future manual toggle can re-enable them.
+    Nothing sets `data-theme="dark"` by default, so this stays inert.
+  */
+  :root[data-theme="dark"] {
+    /* Nisha (dark) — matches bhagavadgita.com */
+    --background: 60 2.7% 14.51%;
+    --foreground: 46 24% 92%;
+    --card: 60 2.7% 17.5%;
+    --card-foreground: 46 24% 92%;
+    --primary: 14.77 63.11% 59.61%;
+    --primary-foreground: 60 2.7% 10%;
+    --secondary: 60 2.5% 22%;
+    --secondary-foreground: 46 20% 88%;
+    --muted: 60 2.5% 22%;
+    --muted-foreground: 48 6% 65%;
+    --accent: 60 2.5% 24%;
+    --accent-foreground: 46 24% 92%;
+    --border: 60 2.5% 26%;
+    --ring: 14.77 63.11% 59.61%;
   }
 }
 

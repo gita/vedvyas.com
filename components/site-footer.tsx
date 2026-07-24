@@ -102,10 +102,15 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border/60 pt-6 text-sm text-muted-foreground sm:flex-row">
-          <p>
-            &copy; {new Date().getFullYear()} {site.name}
-          </p>
+        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border/60 pt-6 text-sm text-muted-foreground sm:flex-row sm:items-start">
+          <div>
+            <p>
+              &copy; {new Date().getFullYear()} {site.name}
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground/80">
+              A registered non-profit in India. CIN: U85300HR2022NPL106949.
+            </p>
+          </div>
           <p>Made as an offering. Free and ad-free for everyone.</p>
         </div>
       </div>
