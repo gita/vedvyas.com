@@ -108,6 +108,11 @@ export function SiteFooter() {
           </p>
           <p>Made as an offering. Free and ad-free for everyone.</p>
         </div>
+
+        <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground/80">
+          Ved Vyas Foundation is a registered non-profit in India. CIN:
+          U85300HR2022NPL106949.
+        </p>
       </div>
     </footer>
   );

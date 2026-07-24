@@ -122,7 +122,14 @@ function buildJsonLd() {
         "@type": ["NGO", "Organization"],
         "@id": org,
         name: site.name,
+        legalName: "Ved Vyas Foundation",
         alternateName: ["Ved Vyas Foundation", "VedVyas Foundation"],
+        identifier: {
+          "@type": "PropertyValue",
+          propertyID: "CIN",
+          value: "U85300HR2022NPL106949",
+        },
+        foundingDate: "2022-10",
         url: site.url,
         logo: {
           "@type": "ImageObject",
