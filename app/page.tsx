@@ -1,7 +1,9 @@
 import Image from "next/image";
 
 import { BrowserFrame } from "@/components/browser-frame";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
+
+import { Github, Linkedin } from "@/components/brand-icons";
 
 import { ObfuscatedEmail } from "@/components/obfuscated-email";
 import { SiteFooter } from "@/components/site-footer";
@@ -142,47 +144,47 @@ function Projects() {
               </div>
 
               <div className="flex flex-1 flex-col p-6 sm:p-7">
-              <h3 className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">
-                {/*
+                <h3 className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">
+                  {/*
                   Stretched link. The ::after covers the whole card so the card is
                   clickable, while the markup stays one valid anchor per card.
                 */}
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus:outline-none"
-                >
-                  {project.name}
-                </a>
-              </h3>
-
-              <p className="mt-1.5 text-sm font-medium text-primary">
-                {project.tagline}
-              </p>
-              <p className="mt-4 max-w-prose text-pretty text-[15px] leading-relaxed text-muted-foreground">
-                {project.description}
-              </p>
-
-              <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-6">
-                <span className="-my-3 inline-flex items-center gap-1 py-3 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
-                  {project.cta}
-                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-
-                {/* z-10 lifts these above the stretched link so they stay clickable */}
-                {project.links?.map((link) => (
                   <a
-                    key={link.label}
-                    href={link.href}
+                    href={project.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="relative z-10 -my-3 inline-flex items-center rounded-md py-3 text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus:outline-none"
                   >
-                    {link.label}
+                    {project.name}
                   </a>
-                ))}
-              </div>
+                </h3>
+
+                <p className="mt-1.5 text-sm font-medium text-primary">
+                  {project.tagline}
+                </p>
+                <p className="mt-4 max-w-prose text-pretty text-[15px] leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+
+                <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-6">
+                  <span className="-my-3 inline-flex items-center gap-1 py-3 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
+                    {project.cta}
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+
+                  {/* z-10 lifts these above the stretched link so they stay clickable */}
+                  {project.links?.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="relative z-10 -my-3 inline-flex items-center rounded-md py-3 text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </li>
           ))}
